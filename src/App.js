@@ -4,6 +4,8 @@ import Header from './Header/Header';
 import ApiItem from './ApiItem/ApiItems';
 import Footer from './Footer/Footer';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { increment, decrement } from './actions';
 
 class App extends Component {
   constructor(props){
@@ -19,7 +21,6 @@ componentDidMount(){
       .then(res => res.json())
       .then(
         (result) => {
-          console.log("HERE AAAA",result)
           this.setState({
             isLoaded: true,
             items: result
@@ -51,9 +52,25 @@ componentDidMount(){
     return (
       <div>
         <Header/>
-        {pokemon}
+        <p>{this.props.counter.b}</p>
+        <button onClick={this.props.increment}>Increase</button>
+        <button onClick={()=>this.props.decrement(2,this.props.counter.b)}>Decrease</button>
+        {/* {pokemon} */}
       </div>
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => ({
+  counter: state.counter,
+});
+
+const mapDispatchToProps = {
+  increment,
+  decrement,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
