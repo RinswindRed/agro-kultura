@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css'
 import { connect } from 'react-redux'
 import { fetchMovies} from '../actions';
-import withMovies from '../HOC/withToken'
+import withMovies from '../HOC/withMovies'
 
 class Footer extends React.Component {
     render(){

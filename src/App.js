@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import Header from './Header/Header';
-import ApiItem from './ApiItem/ApiItems';
-import Footer from './Footer/Footer';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { increment, decrement, fetchMovies} from './actions';
-import withToken from './HOC/withToken'
+import withMovies from './HOC/withMovies';
+import Content from './Content/Content';
 
 class App extends Component {
   render() {
-
-    console.log("THIS PROS", this.props)
     return (
       <div>
-        <Header/>
-        <button onClick={this.props.increment}>Increase</button>
-        <button onClick={()=>this.props.decrement(2,this.props.counter.b)}>Decrease</button>
-        {/* {pokemon} */}
-        <Link to='/footer'>Footer</Link>
+       <Header/>
+       <Content/>
       </div>
     );
   }
@@ -37,4 +30,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withToken(App))
+)(withMovies(App))

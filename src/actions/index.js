@@ -7,7 +7,14 @@ export const decrement = (number,number2) => ({
     number,
     number2
   })
-export const fetchMovies = (payload) => ({
+
+  export const fetchMovies = (payload) => ({
   type:'FETCH_MOVIES',
   payload
 })
+
+export const logIn = (payload) => ({
+  type:'LOG_IN',
+  payload
+})
+

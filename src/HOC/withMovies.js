@@ -4,10 +4,9 @@ import {fetchMovies} from '../actions'
 
 const withMovies = (WrappedComponent) => {
   class HOC extends React.Component {
-    componentDidMount(){
-        console.log("HERE",this.props.movies.length )
-    if(this.props.movies.length === 0){
-        console.log("HERE in conditions",this.props.movies.length )
+    
+  componentDidMount(){
+    if(this.props.movies.length === 0 && this.props.isLoged){
         fetch("https://baza-filmova.herokuapp.com/filmovi/")
         .then(res => res.json())
         .then(
@@ -20,9 +19,24 @@ const withMovies = (WrappedComponent) => {
       )
   }
 }
+componentDidUpdate(prevProps){
+  if(this.props.isLoged !== prevProps.isLoged && this.props.isLoged){
+      fetch("https://baza-filmova.herokuapp.com/filmovi/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.props.fetchMovies(result);
+        },
+        (error) => {
+          console.log("HEHEHE")
+        }
+    )
 
+  }
+}
     render() {
-      const hasMovies = this.props.movies.length === 0;
+      const hasMovies = this.props.movies.length !== 0;
+      console.log("THI IS LOGED", this.props.isLoged)
       return (
         <WrappedComponent
           hasMovies={hasMovies}
@@ -33,7 +47,8 @@ const withMovies = (WrappedComponent) => {
   }
 
 const mapStateToProps = state =>({
-    movies: state.movies.movies
+    movies: state.movies.movies,
+    isLoged:state.isLoged
 })
 const mapDispatchToProps = {
     fetchMovies
