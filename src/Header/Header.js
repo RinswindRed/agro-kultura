@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {logIn} from '../actions'
 
 class Header extends Component {
-    
     logika = () => {
         const isLoged = typeof "marko" === "string" ? true : false
         this.props.logIn(isLoged)

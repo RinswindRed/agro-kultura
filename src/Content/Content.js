@@ -8,9 +8,13 @@ class Content extends Component {
     render(){
         console.log('THIS PROPS', this.props)
         const movies=this.props.movies.map((movie,index)=>{
-            return (<Link to={`/filmovi/${movie.id}`}><div style={{width:"100px",backgroundColor:"red",margin:"10px"}}>
+            return (
+            <Link to={`/filmovi/${movie.id}`}>
+                <div style={{width:"100px",backgroundColor:"red",margin:"10px"}}>
                 {movie.naziv}
-            </div></Link>)
+            </div>
+            </Link>
+            )
         })
         return(
             <div className={"content"}>
