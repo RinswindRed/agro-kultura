@@ -1,10 +1,6 @@
-import { combineReducers } from 'redux'
-import counter from './counter'
-import movies from './movies'
-import isLoged from './isLoged'
+import { combineReducers } from "redux";
+import headerReducer from "./headerReducer";
 
 export default combineReducers({
-  counter,
-  movies,
-  isLoged
-})
+  headerReducer
+});

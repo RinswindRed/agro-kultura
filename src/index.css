@@ -1,6 +1,28 @@
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  /* background-image: url("./assets/serbia.svg"); */
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: 65% 80%;
+  background-position: center;
+}
+
+.Site-content {
+  flex: 1;
+  color: brown;
+  flex: 1 0 auto;
+}
+
+html, body {
+  height: 100%;
+}
 body {
-  background-color: #ffff;
+  display: flex;
+  flex-direction: column;
 }
-.ab{
-  color:grey;
+#RS-06 {
+  fill: red;
 }
+

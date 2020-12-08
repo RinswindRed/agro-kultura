@@ -1,33 +1,25 @@
-import React, {Component} from "react";
-import './Content.css'
-import withMovies from '../HOC/withMovies'
-import {Link} from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import NotFound404 from "../NotFound404";
+import Home from "../Home/Home";
+import About from '../About/About';
+import Services from '../Services/Services'
+import Contact from '../Contact/Contact'
 
 class Content extends Component {
-    render(){
-        console.log('THIS PROPS', this.props)
-        const movies=this.props.movies.map((movie,index)=>{
-            return (
-            <Link to={`/filmovi/${movie.id}`}>
-                <div style={{width:"100px",backgroundColor:"red",margin:"10px"}}>
-                {movie.naziv}
-            </div>
-            </Link>
-            )
-        })
-        return(
-            <div className={"content"}>
-               {movies}
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+      <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About} />
+          <Route path="/services" component={Services} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFound404} />
+      </Switch>
+      </div>
+    );
+  }
 }
-const mapStateToProps = state => ({
-    movies: state.movies.movies
-  });
-  
-export default connect(
-    mapStateToProps,
-    null
-  )(withMovies(Content));
+
+export default Content;
